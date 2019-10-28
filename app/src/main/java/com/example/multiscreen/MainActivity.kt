@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,45 +14,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val numbers = findViewById<TextView>(R.id.numbers)
-        val family = findViewById<TextView>(R.id.family)
-        val colors = findViewById<TextView>(R.id.colors)
-        val phrases = findViewById<TextView>(R.id.phrases)
+//        For Removing the shadow below Action bar
 
-        numbers.setOnClickListener{v ->
-            opennubersActivity()
-        }
-        family.setOnClickListener { v->
-            openFamilyActivity()
-        }
-        colors.setOnClickListener{v->
-            openColorsActivity()
-        }
-        phrases.setOnClickListener{v->
-            openPhrasesActivity()
-        }
+        supportActionBar!!.elevation = 0f
 
+        val viewPager = findViewById<ViewPager>(R.id.viewpager)
+
+        val adapter = FixedTabFragmentPagerAdapter(supportFragmentManager)
+
+        viewPager.adapter = adapter
+
+        // Connecting viewpager with tabs
+        val tabLayout = findViewById<TabLayout>(R.id.tabs)
+        tabLayout.setupWithViewPager(viewPager)
     }
-
-    private fun opennubersActivity(){
-        val intent = Intent(this,NumbersActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun openColorsActivity(){
-        val intent = Intent(this, ColorsActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun openFamilyActivity(){
-        val intent = Intent(this, FamilyActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun openPhrasesActivity(){
-        val intent = Intent(this,PhrasesActivity::class.java)
-        startActivity(intent)
-    }
-
 }
 
