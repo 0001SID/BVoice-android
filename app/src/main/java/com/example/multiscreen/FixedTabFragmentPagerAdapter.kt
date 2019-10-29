@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentPagerAdapter
  */
 
 class FixedTabFragmentPagerAdapter(fm:FragmentManager,current: Context):FragmentPagerAdapter(fm,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
-    private var context:Context = current
+    private val context:Context = current
 
     override fun getCount(): Int {
         return 4
