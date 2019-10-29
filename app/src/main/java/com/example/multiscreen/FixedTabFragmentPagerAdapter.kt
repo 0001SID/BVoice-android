@@ -1,10 +1,18 @@
 package com.example.multiscreen
 
+import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
-class FixedTabFragmentPagerAdapter(fm:FragmentManager):FragmentPagerAdapter(fm,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+/*
+ * In FixedTabFragmentPagerAdapter we also passing the context(current:Context) of MainActivity to use the resources object for getting
+ * the string from strings.xml file without this context resources object is not available in this file
+ */
+
+class FixedTabFragmentPagerAdapter(fm:FragmentManager,current: Context):FragmentPagerAdapter(fm,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    private var context:Context = current
+
     override fun getCount(): Int {
         return 4
     }
@@ -25,10 +33,10 @@ class FixedTabFragmentPagerAdapter(fm:FragmentManager):FragmentPagerAdapter(fm,F
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position){
-            0-> "Numbers"
-            1-> "Colors"
-            2-> "Family"
-            3-> "Phrases"
+            0-> context.resources.getString(R.string.category_numbers)
+            1-> context.resources.getString(R.string.category_colors)
+            2-> context.resources.getString(R.string.category_family)
+            3-> context.resources.getString(R.string.category_phrases)
             else -> null
         }
 

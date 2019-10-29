@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         val viewPager = findViewById<ViewPager>(R.id.viewpager)
 
-        val adapter = FixedTabFragmentPagerAdapter(supportFragmentManager)
+        val adapter = FixedTabFragmentPagerAdapter(supportFragmentManager,this)
 
         viewPager.adapter = adapter
 
